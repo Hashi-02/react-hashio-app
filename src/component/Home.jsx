@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { auth, provider } from '../firebase';
 import { Navigate } from 'react-router-dom';
-import { onAuthStateChanged, signInWithPopup } from 'firebase/auth';
+import { onAuthStateChanged, signInWithRedirect } from 'firebase/auth';
 
 const Home = () => {
   const handleGoogleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await signInWithPopup(auth, provider);
+      await signInWithRedirect(auth, provider);
     } catch (error) {
       alert('メールアドレスまたはパスワードが間違っています');
     }
