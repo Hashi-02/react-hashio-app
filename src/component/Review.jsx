@@ -41,12 +41,13 @@ const Review = () => {
               <div>
                 {GetUsers.map((user) => (
                   <div key={user.id}>
-                    <p>レビュワー:{user.name}</p>
+                    <p>研究室:{user.selectLabo}</p>
                     <p>星:{user.stars}</p>
                     <p>雰囲気:{user.atmosphere}</p>
                     <p>どんな活動をしているか:{user.WhatDo}</p>
                     <p>教授の印象:{user.ProfesserImpression}</p>
                     <p>どのくらい忙しいか:{user.HowBusy}</p>
+                    <p>レビュワー:{user.name}</p>
                     <br />
                   </div>
                 ))}

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase';
 import { db } from '../firebase';
-import { setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc, addDoc } from 'firebase/firestore';
 import { collection, onSnapshot, getDocs } from 'firebase/firestore';
 const Post = () => {
   const [labos, setLabos] = useState([]);
@@ -21,7 +21,6 @@ const Post = () => {
         );
       });
     });
-    // console.log(labos);
 
     onAuthStateChanged(auth, (currentUser) => {
       const uids = auth.currentUser;
@@ -35,15 +34,23 @@ const Post = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { name, stars, WhatDo, atmosphere, HowBusy, ProfesserImpression } =
-      event.target.elements;
+    const {
+      name,
+      stars,
+      WhatDo,
+      atmosphere,
+      HowBusy,
+      ProfesserImpression,
+      selectLabo,
+    } = event.target.elements;
     console.log(
       name.value,
       stars.value,
       WhatDo.value,
       atmosphere.value,
-      HowBusy.vale,
-      ProfesserImpression.value
+      HowBusy.value,
+      ProfesserImpression.value,
+      selectLabo.value
     );
 
     const usersCollectionRef = doc(db, 'users', uid);
@@ -55,17 +62,31 @@ const Post = () => {
       atmosphere: atmosphere.value,
       HowBusy: HowBusy.value,
       ProfesserImpression: ProfesserImpression.value,
+      selectLabo: selectLabo.value,
       uid: uid,
     });
 
     console.log(documentRef);
   };
 
-  const labosList = labos.map((value) => (
-    <option value={value.Laboratory} text={value.Laboratory}>
+  const labosList = labos.map((value, idx) => (
+    <option key={idx} value={value.Laboratory} text={value.Laboratory}>
       {value.Laboratory}
     </option>
   ));
+
+  const handleSubmit2 = async (event) => {
+    event.preventDefault();
+
+    const { Laboratory } = event.target.elements;
+    console.log(Laboratory.value);
+
+    const documentRef2 = addDoc(collection(db, 'seminar'), {
+      Laboratory: Laboratory.value,
+    });
+
+    console.log(documentRef2);
+  };
 
   return (
     <>
@@ -80,8 +101,9 @@ const Post = () => {
               <div style={{ margin: '50px' }}>
                 <form onSubmit={handleSubmit}>
                   <div>
-                    <select value={labos.value}>
-                      <option value={'none'}>Please select</option>
+                    <label>研究室名</label>
+                    <select name="selectLabo" value={labos.value}>
+                      <option id={'none'}>Please select</option>
                       {labosList}
                     </select>
                   </div>
@@ -137,6 +159,24 @@ const Post = () => {
               <Link to={'/review'}>
                 <button>レビューに戻る</button>
               </Link>
+
+              <h1>新規投稿</h1>
+
+              <div style={{ margin: '50px' }}>
+                <form onSubmit={handleSubmit2}>
+                  <div>
+                    <label>Laboratory</label>
+                    <input
+                      name="Laboratory"
+                      type="text"
+                      placeholder="Laboratory"
+                    />
+                  </div>
+                  <div>
+                    <button>登録</button>
+                  </div>
+                </form>
+              </div>
             </>
           )}
         </>
