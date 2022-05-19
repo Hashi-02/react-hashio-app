@@ -13,9 +13,9 @@ const Post = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const usersCollectionRef = collection(db, 'seminar');
-    const unsub = onSnapshot(usersCollectionRef, (querySnapshot) => {
-      getDocs(usersCollectionRef).then((querySnapshot) => {
+    const ProfessorCollectionRef = collection(db, 'seminar');
+    const unsub = onSnapshot(ProfessorCollectionRef, (querySnapshot) => {
+      getDocs(ProfessorCollectionRef).then((querySnapshot) => {
         setLabos(
           querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
         );
