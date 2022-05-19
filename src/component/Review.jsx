@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth, db } from '../firebase';
 import { useNavigate, Navigate } from 'react-router-dom';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, getDocs } from 'firebase/firestore';
 const Review = () => {
+  const [labos, setLabos] = useState([]);
+  const lid = '長谷海平';
   const [GetUsers, setGetUsers] = useState([]);
   const [user, setUser] = useState('');
   const [loading, setLoading] = useState(true);
@@ -16,6 +18,14 @@ const Review = () => {
       );
     });
     // console.log(GetUsers);
+    const ProfessorCollectionRef = collection(db, 'seminar');
+    const unsu = onSnapshot(ProfessorCollectionRef, (querySnapshot) => {
+      getDocs(ProfessorCollectionRef).then((querySnapshot) => {
+        setLabos(
+          querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        );
+      });
+    });
 
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -38,6 +48,16 @@ const Review = () => {
           ) : (
             <>
               <h1>レビュー</h1>
+              <div>
+                {labos.map((d, index) => (
+                  <Link to={`/review/${d.Laboratory}`}>
+                    <p>{d.Laboratory}ゼミ</p>
+                  </Link>
+                ))}
+              </div>
+
+              <h1>レビュー</h1>
+
               <div>
                 {GetUsers.map((user) => (
                   <div key={user.id}>
