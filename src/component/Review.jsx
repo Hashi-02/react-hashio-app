@@ -6,28 +6,30 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import { collection, onSnapshot, getDocs } from 'firebase/firestore';
 const Review = () => {
   const [labos, setLabos] = useState([]);
-  const lid = '長谷海平';
   const [GetUsers, setGetUsers] = useState([]);
   const [user, setUser] = useState('');
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const usersCollectionRef = collection(db, 'users');
-    const unsub = onSnapshot(usersCollectionRef, (querySnapshot) => {
+    var unsub = onSnapshot(usersCollectionRef, (querySnapshot) => {
       setGetUsers(
         querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       );
     });
     // console.log(GetUsers);
     const ProfessorCollectionRef = collection(db, 'seminar');
-    const unsu = onSnapshot(ProfessorCollectionRef, (querySnapshot) => {
+    unsub = onSnapshot(ProfessorCollectionRef, (querySnapshot) => {
       getDocs(ProfessorCollectionRef).then((querySnapshot) => {
         setLabos(
           querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
         );
       });
     });
+    // console.log(unsub0);
 
     onAuthStateChanged(auth, (currentUser) => {
+      const uids = auth.currentUser;
+      localStorage.setItem('uid', uids.uid);
       setUser(currentUser);
       setLoading(false);
       console.log(currentUser.photoURL);
@@ -47,20 +49,20 @@ const Review = () => {
             <Navigate to={`/`} />
           ) : (
             <>
-              <h1>レビュー</h1>
+              <h1>研究室一覧</h1>
               <div>
-                {labos.map((d, index) => (
-                  <Link to={`/review/${d.Laboratory}`}>
+                {labos.map((d, id) => (
+                  <Link to={`/review/${d.Laboratory}`} key={id}>
                     <p>{d.Laboratory}ゼミ</p>
                   </Link>
                 ))}
               </div>
 
-              <h1>レビュー</h1>
+              <h1>最新レビュー</h1>
 
-              <div>
-                {GetUsers.map((user) => (
-                  <div key={user.id}>
+              <div key={user.id}>
+                {GetUsers.map((user, id) => (
+                  <div key={id}>
                     <p>研究室:{user.selectLabo}</p>
                     <p>星:{user.stars}</p>
                     <p>雰囲気:{user.atmosphere}</p>

@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import {
-  collection,
-  getDocs,
-  query,
-  where,
-  onSnapshot,
-} from 'firebase/firestore';
-import { auth, db } from '../firebase';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const DetailPage = () => {
   const professer = useParams();
@@ -31,8 +25,8 @@ const DetailPage = () => {
       <div>
         <p>教授名:{professer.id}</p>
         <div>
-          {GetUsers.map((user) => (
-            <div key={user}>
+          {GetUsers.map((user, id) => (
+            <div key={id}>
               <p>研究室:{user.selectLabo}</p>
               <p>星:{user.stars}</p>
               <p>雰囲気:{user.atmosphere}</p>
