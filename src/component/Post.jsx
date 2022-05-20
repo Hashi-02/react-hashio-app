@@ -225,86 +225,137 @@ const Post = () => {
                   <button type="submit">Submit</button>
                 </form>
               </> */}
-              <h1>新規投稿</h1>
+              <div className="flex  flex-col px-16 py-8 h-screen text-center ">
+                <h1 className="text-6xl my-3 mb-5">新規投稿</h1>
 
-              <div style={{ margin: '50px' }}>
-                <form onSubmit={handleSubmit}>
-                  <div>
-                    <label>研究室名</label>
-                    <select name="selectLabo" value={labos.value}>
-                      <option id={'none'}>Please select</option>
-                      {labosList}
-                    </select>
-                  </div>
+                <div>
+                  <form onSubmit={handleSubmit}>
+                    <div>
+                      <label className="block mb-2 text-lg font-medium text-gray-800 dark:text-gray-800">
+                        研究室名
+                      </label>
 
-                  <div>
-                    <label>名前</label>
-                    <input name="name" type="text" placeholder="名前" />
-                  </div>
+                      <select
+                        name="selectLabo"
+                        value={labos.value}
+                        class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-yellow-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
+                      >
+                        <option id={'none'}>所属ゼミ選択</option>
+                        {labosList}
+                      </select>
+                    </div>
 
-                  <div>
-                    <label>星</label>
-                    <input name="stars" type="number" placeholder="星" />
-                  </div>
+                    <div>
+                      <label className="block mb-2 text-lg font-medium text-gray-800 dark:text-gray-800">
+                        投稿者名
+                      </label>
+                      <input
+                        name="name"
+                        type="text"
+                        placeholder="名前"
+                        class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
+                      />
+                    </div>
 
-                  <div>
-                    <label>どんな活動をしてるのか</label>
-                    <input
-                      name="WhatDo"
-                      type="text"
-                      placeholder="どんな活動をしてるのか"
-                    />
-                  </div>
+                    <div>
+                      <label>星</label>
+                      <input name="stars" type="number" placeholder="星" />
+                    </div>
 
-                  <div>
-                    <label>雰囲気</label>
-                    <input name="atmosphere" type="text" placeholder="雰囲気" />
-                  </div>
+                    <div>
+                      <label className="block mb-2 text-lg font-medium text-gray-800 dark:text-gray-800">
+                        どんな活動をしてるのか
+                      </label>
+                      <textarea
+                        name="WhatDo"
+                        type="text"
+                        placeholder="どんな活動をしてるのか"
+                        rows="4"
+                        class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
+                      />
+                    </div>
 
-                  <div>
-                    <label>どのくらい忙しいか</label>
-                    <input
-                      name="HowBusy"
-                      type="text"
-                      placeholder="どのくらい忙しいか"
-                    />
-                  </div>
+                    <div>
+                      <label className="block mb-2 text-lg font-medium text-gray-800 dark:text-gray-800">
+                        雰囲気
+                      </label>
+                      <textarea
+                        name="atmosphere"
+                        type="text"
+                        placeholder="雰囲気"
+                        rows="4"
+                        class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
+                      />
+                    </div>
 
-                  <div>
-                    <label>教授の印象</label>
-                    <input
-                      name="ProfesserImpression"
-                      type="text"
-                      placeholder="教授の印象"
-                    />
-                  </div>
+                    <div>
+                      <label className="block mb-2 text-lg font-medium text-gray-800 dark:text-gray-800">
+                        どのくらい忙しいか
+                      </label>
+                      <textarea
+                        name="HowBusy"
+                        type="text"
+                        placeholder="どのくらい忙しいか"
+                        rows="4"
+                        class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
+                      />
+                    </div>
 
-                  <div>
-                    <button>登録</button>
-                  </div>
-                </form>
-              </div>
+                    <div>
+                      <label className="block mb-2 text-lg font-medium text-gray-800 dark:text-gray-800">
+                        教授の印象
+                      </label>
+                      <textarea
+                        name="ProfesserImpression"
+                        type="text"
+                        placeholder="教授の印象"
+                        rows="4"
+                        class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-3"
+                      />
+                    </div>
 
-              <Link to={'/review'}>
-                <button>レビューに戻る</button>
-              </Link>
+                    <div>
+                      <button className="bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white py-2 w-full border border-yellow-500 hover:border-transparent rounded mb-5">
+                        登録
+                      </button>
+                    </div>
+                  </form>
+                </div>
 
-              <h1>ゼミ追加</h1>
+                <Link to={'/review'}>
+                  <button className="bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white py-3 w-full border border-yellow-500 hover:border-transparent rounded my-3 mb-9">
+                    レビューに戻る
+                  </button>
+                </Link>
 
-              <div style={{ margin: '50px' }}>
-                <form onSubmit={handleSubmit2}>
-                  <div>
-                    <label>Laboratory</label>
-                    <input
-                      name="Laboratory"
-                      type="text"
-                      placeholder="Laboratory"
-                    />
-                  </div>
-                  <div>
-                    <button>登録</button>
-                  </div>
-                </form>
+                <h2 className="text-5xl my-3">ゼミ追加</h2>
+
+                <div>
+                  <form onSubmit={handleSubmit2}>
+                    <div>
+                      <label className="block mb-2 text-lg font-medium text-gray-800 dark:text-gray-800">
+                        Laboratory
+                      </label>
+                      <input
+                        name="Laboratory"
+                        type="text"
+                        placeholder="Laboratory"
+                        class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      />
+                    </div>
+
+                    <div>
+                      <button className="bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white py-2 w-full border border-yellow-500 hover:border-transparent rounded my-4 mb-5">
+                        登録
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <Link to={'/review'}>
+                  <button className="bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white py-3 w-full border border-yellow-500 hover:border-transparent rounded my-3 mb-9">
+                    レビューに戻る
+                  </button>
+                </Link>
               </div>
             </>
           )}

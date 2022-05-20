@@ -49,16 +49,44 @@ const Review = () => {
             <Navigate to={`/`} />
           ) : (
             <>
-              <h1>研究室一覧</h1>
-              <div>
+              <div className="text-center mx-3">
+                <p className="text-5xl my-5">研究室一覧</p>
+                <button
+                  onClick={logout}
+                  className="bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white py-2 px-5 border border-yellow-500 hover:border-transparent rounded"
+                >
+                  ログアウト
+                </button>
+                <Link to={'/post'}>
+                  <div className="text-5xl bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white py-6 w-full border border-yellow-500 hover:border-transparent rounded my-10">
+                    <button>
+                      <p>新規投稿する</p>
+                    </button>
+                  </div>
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-4 gap-4 text-center mx-3">
                 {labos.map((d, id) => (
                   <Link to={`/review/${d.Laboratory}`} key={id}>
-                    <p>{d.Laboratory}ゼミ</p>
+                    <p className="bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white py-2 w-full border border-yellow-500 hover:border-transparent rounded">
+                      {d.Laboratory}ゼミ
+                    </p>
                   </Link>
                 ))}
               </div>
 
-              <h1>最新レビュー</h1>
+              <div className="text-center mx-3">
+                <Link to={'/post'}>
+                  <div className="text-5xl bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white py-6 w-full border border-yellow-500 hover:border-transparent rounded my-10">
+                    <button>
+                      <p>新規投稿する</p>
+                    </button>
+                  </div>
+                </Link>
+              </div>
+
+              {/* <h1>最新レビュー</h1>
 
               <div key={user.id}>
                 {GetUsers.map((user, id) => (
@@ -73,17 +101,12 @@ const Review = () => {
                     <br />
                   </div>
                 ))}
-              </div>
+              </div> */}
 
-              <h1>プロフィール</h1>
+              {/* <h1>プロフィール</h1>
               <p>{user?.email}</p>
               <p>{user?.displayName}</p>
-              <img src={user?.photoURL} alt="ユーザープロフィール画像" />
-
-              <button onClick={logout}>ログアウト</button>
-              <Link to={'/post'}>
-                <button>新規投稿</button>
-              </Link>
+              <img src={user?.photoURL} alt="ユーザープロフィール画像" /> */}
             </>
           )}
         </>
