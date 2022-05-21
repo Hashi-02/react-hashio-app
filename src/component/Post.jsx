@@ -48,6 +48,7 @@ const Post = () => {
       HowBusy,
       ProfesserImpression,
       selectLabo,
+      easyExplanation,
     } = event.target.elements;
     console.log(
       name.value,
@@ -56,7 +57,8 @@ const Post = () => {
       atmosphere.value,
       HowBusy.value,
       ProfesserImpression.value,
-      selectLabo.value
+      selectLabo.value,
+      easyExplanation.value
     );
 
     const usersCollectionRef = doc(db, 'users', UID);
@@ -69,6 +71,7 @@ const Post = () => {
       HowBusy: HowBusy.value,
       ProfesserImpression: ProfesserImpression.value,
       selectLabo: selectLabo.value,
+      easyExplanation: easyExplanation.value,
       uid: UID,
     });
 
@@ -225,22 +228,28 @@ const Post = () => {
                   <button type="submit">Submit</button>
                 </form>
               </> */}
-              <div className="flex  flex-col px-16 py-8 h-screen text-center ">
-                <h1 className="text-6xl my-3 mb-5">新規投稿</h1>
+              <div className="flex flex-col px-16 py-8 ">
+                <h1 className="text-6xl my-3 mb-5 text-center">新規投稿</h1>
 
                 <div>
                   <form onSubmit={handleSubmit}>
                     <div>
-                      <label className="block mb-2 text-lg font-medium text-gray-800 dark:text-gray-800">
+                      <label
+                        className="block mb-2 w-full text-lg font-medium text-gray-800 dark:text-gray-800"
+                        required
+                      >
                         研究室名
                       </label>
 
                       <select
+                        required
                         name="selectLabo"
                         value={labos.value}
-                        class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-yellow-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
+                        class="block p-2.5 text-lg w-full text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-yellow-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
                       >
-                        <option id={'none'}>所属ゼミ選択</option>
+                        <option value="" required>
+                          所属ゼミ選択
+                        </option>
                         {labosList}
                       </select>
                     </div>
@@ -250,6 +259,7 @@ const Post = () => {
                         投稿者名
                       </label>
                       <input
+                        required
                         name="name"
                         type="text"
                         placeholder="名前(例:はしおくん)"
@@ -257,9 +267,29 @@ const Post = () => {
                       />
                     </div>
 
-                    <div>
+                    <div class="">
                       <label>星</label>
-                      <input name="stars" type="number" placeholder="星" />
+                      <input
+                        name="stars"
+                        type="number"
+                        placeholder="星(おすすめ度を1~5で教えて！)"
+                        min="1"
+                        max="5"
+                        class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
+                      />
+                    </div>
+                    <div>
+                      <label className="block mb-2 text-lg font-medium text-gray-800 dark:text-gray-800">
+                        どんな人におすすめか一言で！
+                      </label>
+                      <textarea
+                        required
+                        name="easyExplanation"
+                        type="text"
+                        placeholder="どんな人におすすめか！一言で！(例:機械学習をとりあえずしたいという人におすすめのゼミ！)"
+                        rows="2"
+                        class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
+                      />
                     </div>
 
                     <div>
@@ -267,6 +297,7 @@ const Post = () => {
                         どんな活動をしてるのか
                       </label>
                       <textarea
+                        required
                         name="WhatDo"
                         type="text"
                         placeholder="どんな活動をしてるのか(例:同期のゼミ生たちと教授に指定された機械学習の教科書を輪読。各週一人、割り当てられたページ数をスライドにまとめて発表を行う)"
@@ -280,6 +311,7 @@ const Post = () => {
                         雰囲気
                       </label>
                       <textarea
+                        required
                         name="atmosphere"
                         type="text"
                         placeholder="雰囲気(例:同期、先輩、教授まとめてワイワイしてる。OBも仲がいい。)"
@@ -293,6 +325,7 @@ const Post = () => {
                         どのくらい忙しいか
                       </label>
                       <textarea
+                        required
                         name="HowBusy"
                         type="text"
                         placeholder="どのくらい忙しいか(例:週1回土曜日6限に集まる。活動するのはその時間だけ。)"
@@ -306,6 +339,7 @@ const Post = () => {
                         教授の印象
                       </label>
                       <textarea
+                        required
                         name="ProfesserImpression"
                         type="text"
                         placeholder="教授の印象(例:パッと見怖いけど、話したらめちゃめちゃ優しい。)"
@@ -339,7 +373,7 @@ const Post = () => {
                       <input
                         name="Laboratory"
                         type="text"
-                        placeholder="Laboratory(上の所属ゼミ選択の選択肢に自分の所属ゼミがなかったらここから追加してください)"
+                        placeholder="所属ゼミ選択に自分の所属ゼミがなかったらここから追加"
                         class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       />
                     </div>
