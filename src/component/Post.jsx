@@ -252,7 +252,7 @@ const Post = () => {
                       <input
                         name="name"
                         type="text"
-                        placeholder="名前"
+                        placeholder="名前(例:はしおくん)"
                         class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
                       />
                     </div>
@@ -269,7 +269,7 @@ const Post = () => {
                       <textarea
                         name="WhatDo"
                         type="text"
-                        placeholder="どんな活動をしてるのか"
+                        placeholder="どんな活動をしてるのか(例:同期のゼミ生たちと教授に指定された機械学習の教科書を輪読。各週一人、割り当てられたページ数をスライドにまとめて発表を行う)"
                         rows="4"
                         class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
                       />
@@ -282,7 +282,7 @@ const Post = () => {
                       <textarea
                         name="atmosphere"
                         type="text"
-                        placeholder="雰囲気"
+                        placeholder="雰囲気(例:同期、先輩、教授まとめてワイワイしてる。OBも仲がいい。)"
                         rows="4"
                         class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
                       />
@@ -295,7 +295,7 @@ const Post = () => {
                       <textarea
                         name="HowBusy"
                         type="text"
-                        placeholder="どのくらい忙しいか"
+                        placeholder="どのくらい忙しいか(例:週1回土曜日6限に集まる。活動するのはその時間だけ。)"
                         rows="4"
                         class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
                       />
@@ -308,7 +308,7 @@ const Post = () => {
                       <textarea
                         name="ProfesserImpression"
                         type="text"
-                        placeholder="教授の印象"
+                        placeholder="教授の印象(例:パッと見怖いけど、話したらめちゃめちゃ優しい。)"
                         rows="4"
                         class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-3"
                       />
@@ -339,7 +339,7 @@ const Post = () => {
                       <input
                         name="Laboratory"
                         type="text"
-                        placeholder="Laboratory"
+                        placeholder="Laboratory(上の所属ゼミ選択の選択肢に自分の所属ゼミがなかったらここから追加してください)"
                         class="block p-2.5 w-full text-lg text-black-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-blue-500 focus:border-blue-500  dark:border-yellow-600 dark:placeholder-yellow-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       />
                     </div>
