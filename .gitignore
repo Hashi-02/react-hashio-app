@@ -24,6 +24,8 @@ yarn-error.log*
 
 /src/firebase.js
 .firebase
+firebase-hosting-merge.yml
+firebase-hosting-pull-request.yml
 .firebaserc
 firebase.json
 firestore.index
